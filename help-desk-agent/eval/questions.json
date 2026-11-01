@@ -1,0 +1,248 @@
+[
+    {
+        "id": "hours-saturday",
+        "question": "What time do you open on Saturday?",
+        "expected_tools": [
+            "search_policies"
+        ],
+        "must_contain": [
+            "08:00",
+            "20:00"
+        ],
+        "offline_tool_calls": [
+            {
+                "name": "search_policies",
+                "arguments": {
+                    "question": "What time do you open on Saturday?"
+                }
+            }
+        ]
+    },
+    {
+        "id": "ebike-day-price",
+        "question": "How much is an e-bike for a whole day?",
+        "expected_tools": [
+            "search_policies"
+        ],
+        "must_contain": [
+            "e-bike",
+            "40 EUR"
+        ],
+        "offline_tool_calls": [
+            {
+                "name": "search_policies",
+                "arguments": {
+                    "question": "How much is an e-bike for a whole day?"
+                }
+            }
+        ]
+    },
+    {
+        "id": "age-limit-ebike",
+        "question": "Can my 14-year-old rent an e-bike?",
+        "expected_tools": [
+            "search_policies"
+        ],
+        "must_contain": [
+            "16 years old",
+            "parent or guardian"
+        ],
+        "offline_tool_calls": [
+            {
+                "name": "search_policies",
+                "arguments": {
+                    "question": "Can my 14-year-old rent an e-bike?"
+                }
+            }
+        ]
+    },
+    {
+        "id": "location",
+        "question": "Where are you located?",
+        "expected_tools": [
+            "search_policies"
+        ],
+        "must_contain": [
+            "Riverside Park",
+            "Park Nadrzeczny"
+        ],
+        "offline_tool_calls": [
+            {
+                "name": "search_policies",
+                "arguments": {
+                    "question": "Where are you located?"
+                }
+            }
+        ]
+    },
+    {
+        "id": "refund-50-percent",
+        "question": "I want to cancel booking CW-1002. How much will I get back?",
+        "expected_tools": [
+            "calculate_refund"
+        ],
+        "must_contain": [
+            "€340.00",
+            "€40.00",
+            "€300.00",
+            "5 working days"
+        ],
+        "offline_tool_calls": [
+            {
+                "name": "calculate_refund",
+                "arguments": {
+                    "booking_id": "CW-1002"
+                }
+            }
+        ]
+    },
+    {
+        "id": "refund-100-percent",
+        "question": "What would I get back if I cancel CW-1001?",
+        "expected_tools": [
+            "calculate_refund"
+        ],
+        "must_contain": [
+            "€90.00",
+            "€40.00",
+            "€50.00"
+        ],
+        "offline_tool_calls": [
+            {
+                "name": "calculate_refund",
+                "arguments": {
+                    "booking_id": "CW-1001"
+                }
+            }
+        ]
+    },
+    {
+        "id": "refund-under-24-hours",
+        "question": "How much is refunded for CW-1003 if I cancel now?",
+        "expected_tools": [
+            "calculate_refund"
+        ],
+        "must_contain": [
+            "€50.00",
+            "€0.00"
+        ],
+        "offline_tool_calls": [
+            {
+                "name": "calculate_refund",
+                "arguments": {
+                    "booking_id": "CW-1003"
+                }
+            }
+        ]
+    },
+    {
+        "id": "voucher-refund",
+        "question": "If I cancel CW-1004, do I get cash back?",
+        "expected_tools": [
+            "calculate_refund"
+        ],
+        "must_contain": [
+            "€73.00",
+            "voucher",
+            "not as money"
+        ],
+        "offline_tool_calls": [
+            {
+                "name": "calculate_refund",
+                "arguments": {
+                    "booking_id": "CW-1004"
+                }
+            }
+        ]
+    },
+    {
+        "id": "unknown-booking",
+        "question": "Can you check booking CW-9999?",
+        "expected_tools": [
+            "get_booking"
+        ],
+        "must_contain": [
+            "not found",
+            "help@citywheels.example"
+        ],
+        "refusal": true,
+        "offline_tool_calls": [
+            {
+                "name": "get_booking",
+                "arguments": {
+                    "booking_id": "CW-9999"
+                }
+            }
+        ]
+    },
+    {
+        "id": "unrelated-question",
+        "question": "What is the capital of Australia?",
+        "expected_tools": [],
+        "must_contain": [
+            "cannot answer",
+            "help@citywheels.example"
+        ],
+        "refusal": true,
+        "offline_tool_calls": [],
+        "offline_answer": "I cannot answer that from CityWheels information. Please contact staff at help@citywheels.example."
+    },
+    {
+        "id": "unsupported-service",
+        "question": "Do you offer airport pickup?",
+        "expected_tools": [
+            "search_policies"
+        ],
+        "must_contain": [
+            "cannot answer",
+            "help@citywheels.example"
+        ],
+        "refusal": true,
+        "offline_tool_calls": [
+            {
+                "name": "search_policies",
+                "arguments": {
+                    "question": "Do you offer airport pickup?"
+                }
+            }
+        ]
+    },
+    {
+        "id": "dogs",
+        "question": "Can I take my dog in a bike basket?",
+        "expected_tools": [
+            "search_policies"
+        ],
+        "must_contain": [
+            "not allowed",
+            "bike baskets"
+        ],
+        "offline_tool_calls": [
+            {
+                "name": "search_policies",
+                "arguments": {
+                    "question": "Can I take my dog in a bike basket?"
+                }
+            }
+        ]
+    },
+    {
+        "id": "bike-abroad",
+        "question": "Can I take a CityWheels bike abroad?",
+        "expected_tools": [
+            "search_policies"
+        ],
+        "must_contain": [
+            "abroad is not allowed",
+            "inside the country"
+        ],
+        "offline_tool_calls": [
+            {
+                "name": "search_policies",
+                "arguments": {
+                    "question": "Can I take a CityWheels bike abroad?"
+                }
+            }
+        ]
+    }
+]
